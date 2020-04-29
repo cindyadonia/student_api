@@ -27,6 +27,7 @@ class StudentController extends Controller
     {
         $data = $request->validated();
         try {
+            $data['user_id'] = auth()->user()->id;
             $student = Student::create($data);
         }
         catch (Exception $e) {

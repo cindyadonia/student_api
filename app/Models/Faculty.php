@@ -16,11 +16,11 @@ class Faculty extends Model
 
     public function user()
     {
-        return $this->belongsTo('App/Models/User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function students()
     {
-        return $this->hasMany('App/Models/Student');
+        return $this->hasMany('App\Models\Student');
     }
 }

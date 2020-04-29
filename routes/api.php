@@ -23,6 +23,11 @@ Route::group(['namespace' => 'v1', 'prefix' => 'v1'], function(){
 
     Route::group(['middleware' => ['auth:api']], function(){
         Route::post('/logout','AuthController@logout');
-        Route::resource('student', 'StudentController')->except(['create', 'edit']);
+
+        Route::group(['middleware' => ['isSuperAdmin']], function(){
+            Route::resource('student', 'StudentController')->except(['create', 'edit']);
+            Route::resource('faculty', 'FacultyController')->except(['create', 'edit']);
+            Route::get('facultyStudents/{id}', 'FacultyController@getFacultyStudents');
+        });
     });
 });
